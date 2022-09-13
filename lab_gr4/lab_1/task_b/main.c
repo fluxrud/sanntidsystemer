@@ -38,7 +38,7 @@ int main(int argc, const char* argv[])
 		for(int i = 0; i < 10*1000*1000; i++){
 			t1 = rdtsc();
 			t2 = rdtsc();
-			ns = (t2 - t1);
+			ns = (t2 - t1) * 18;
 			if(ns >= 0 && ns < ns_max){
 				histogram[ns]++;
 			}
