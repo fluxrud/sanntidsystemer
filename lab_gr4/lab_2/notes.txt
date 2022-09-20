@@ -1,0 +1,9 @@
+A
+	malloc does not necessarily allocate all the memory when large amounts is unused.
+
+	
+B
+	When using the -fsanitize=address compile flag we get errors when writing outside the array.
+
+D
+	Memory can be reused when multiplying capacity by 1.5, not 2.

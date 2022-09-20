@@ -6,7 +6,7 @@ int main ()
 {
 	Array tmp;
 	Array a = array_new(10);
-	for(int i = 0; i < 100; i++)
+	for(int i = 0; i < 1000; i++)
 		array_insertBack(&a, 10);
 	array_destroy(a);
 	return 0;

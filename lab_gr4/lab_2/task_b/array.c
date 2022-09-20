@@ -109,7 +109,10 @@ insertBack(2)
 
 
 void array_insertBack(Array* a, long stuff){
-	if (a->back >= a->capacity) array_reserve(a, 2 * a->capacity);
+	if (a->back >= a->capacity) {
+		array_reserve(a, 2 * a->capacity);
+		printf("pointer %p, increased capacity by a factor of 2, now at: %d\n", a->data, a->capacity);
+	}
 	a->data[a->back++] = stuff;
 }
 
