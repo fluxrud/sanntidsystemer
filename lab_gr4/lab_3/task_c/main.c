@@ -318,8 +318,8 @@ struct queue_t {
 };
 
 static int compare(const void * p1, const void * p2){
-	int pri1 = (struct queue_t*)p1;	
-	int pri2 = (struct queue_t*)p2;	
+	int pri1 = ((struct queue_t*)p1)->pri;	
+	int pri2 = ((struct queue_t*)p2)->pri;	
 
 	// return 0 if p1 pri = p2 pri
 	if(pri1 == pri2)return 0;
@@ -359,11 +359,15 @@ void f(struct Task ** tasks, int taskCount, int timeout, int interval){
 		while(counter < taskCount){
 			// preempt
 			// if current task not finished, increase pri
-			if(tasks[currentTaskIndex]->state != finished) queue[0].pri += 10;
-			qsort(queue, taskCount, sizeof(queue), compare);
+			//if(tasks[currentTaskIndex]->state != finished) queue[0].pri += 10;
+			
+			qsort(queue, taskCount, sizeof(queue[0]), compare);
 			for (int i = 0; i < taskCount; i++){
 				if((tasks[queue[i].id]->state != finished) && tasks[queue[i].id]->startTime <= totalTimePassed){
 					currentTaskIndex = queue[i].id;
+					queue[i].pri += 10;
+					printf("increased priority of id:  %d pri: %d tot time: %d\n", queue[i].id, queue[i].pri, totalTimePassed);
+					break;
 				}
 			}
 			if(tasks[currentTaskIndex]->state != finished && tasks[currentTaskIndex]->startTime <= totalTimePassed){
