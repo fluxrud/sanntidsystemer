@@ -1,6 +1,6 @@
 TARGET = test
-CFLAGS =  -lpthread -std=gnu11
-LDFLAGS =  -lpthread -std=gnu11  
+CFLAGS =  -lpthread -std=gnu11 -g -fsanitize=thread
+LDFLAGS =  -lpthread -std=gnu11 -g -fsanitize=thread 
 SOURCES = $(shell find -name "*.c")
 
 all: $(TARGET)
