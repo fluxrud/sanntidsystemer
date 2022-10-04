@@ -39,11 +39,12 @@ void print_pri(pthread_t *thread, char *s){
 }
 
 void busy_wait_ms(int ms){
-	uint64_t pval = 0;
-	asm volatile("isb; mrs %0, cntvct_el0; isb; " : "=r"(pval) :: "memory");
-	uint64_t val = pval;
-	while(val < pval + ms * 54054){ // With no load the RPI actually runs at 54 MHz. Check with sudo dmesg | grep MHz
-		asm volatile("isb; mrs %0, cntvct_el0; isb; " : "=r"(val) :: "memory");
+	//uint64_t pval = 0;
+	//asm volatile("isb; mrs %0, cntvct_el0; isb; " : "=r"(pval) :: "memory");
+	//uint64_t val = pval;
+	for(int i = 0; i < 1000*ms; i++){ // With no load the RPI actually runs at 54 MHz. Check with sudo dmesg | grep MHz
+		//asm volatile("isb; (int i = 0; i < 1000*ms; i++ " : "=r"(val) :: "memory");
+		usleep(1);
 	}
 }
 

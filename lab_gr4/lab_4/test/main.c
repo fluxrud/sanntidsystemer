@@ -11,10 +11,10 @@ void* fn(void* args){
 	long b = 0;
 	
 	for (int i; i<1000000; i++){
-	  	sem_wait(&a_sem);
+	  	//sem_wait(&a_sem);
 		a++;
 	  	b++;
-		sem_post(&a_sem);
+		//sem_post(&a_sem);
 	}
 	int relise= pthread_barrier_wait(&barr); 
 	sem_wait(&a_sem);
